@@ -8,7 +8,7 @@ namespace TestSs
         private List<T> entities;
         public Repository()
         {
-        entities = new List<T>();
+            entities = new List<T>();
         }
 
         public IEnumerable<T> All()
@@ -18,21 +18,21 @@ namespace TestSs
 
         public void Save(T item)
         {
-            Delete(item.Id);
             entities.Add(item);
         }
 
-        public T FindById(IComparable id)
+        public void Update(int id, T item)
         {
-            return entities.Find(MatchedId(id));
+            var entityToUpdate = FindById(id);
+            entityToUpdate.Name = item.Name;
         }
 
-        private Predicate<T> MatchedId(IComparable id)
+        public T FindById(int id)
         {
-            return match => match.Id.Equals(id);
+            return entities.Find(match => match.Id.Equals(id));
         }
 
-        public void Delete(IComparable id)
+        public void Delete(int id)
         {
             var entityToDelete = FindById(id);
             entities.Remove(entityToDelete);

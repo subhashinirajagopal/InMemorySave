@@ -4,7 +4,7 @@ namespace TestSs
 {
     public class Storeable : IStoreable
     {
+        public int Id { get; set; }
         public string Name { get; set; }
-        public IComparable Id { get; set; }
     }
 }
